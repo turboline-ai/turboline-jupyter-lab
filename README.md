@@ -8,6 +8,7 @@ AI-powered code generator for Python Data Science and Data Engineering.
 
 - JupyterLab >= 4.0.0
 
+
 ## Install
 
 To install the extension, execute:
