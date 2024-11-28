@@ -9,7 +9,23 @@ export async function requestAPI<T>(
   endpoint: string,
   init: RequestInit
 ): Promise<T> {
-  const response = await fetch(`/turboline-ai/${endpoint}`, init);
+  // Get the XSRF token from cookie
+  const xsrfToken = document.cookie.split('; ')
+    .find(row => row.startsWith('_xsrf'))
+    ?.split('=')[1];
+
+  // Add headers including XSRF token
+  const headers = {
+    'Content-Type': 'application/json',
+    'X-XSRFToken': xsrfToken || '',
+    ...init.headers
+  };
+
+  const response = await fetch(`/turboline-ai/${endpoint}`, {
+    ...init,
+    headers
+  });
+
   if (!response.ok) {
     const error = await response.text();
     throw new Error(`Error ${response.status}: ${response.statusText}\n${error}`);

@@ -9,6 +9,10 @@ from dotenv import load_dotenv
 load_dotenv()
 
 class TurbolineAIHandler(APIHandler):
+    # Add this line to enable XSRF protection
+    def check_xsrf_cookie(self):
+        pass
+        
     @tornado.web.authenticated
     async def post(self):
         try:
@@ -44,4 +48,4 @@ class TurbolineAIHandler(APIHandler):
             self.finish(json.dumps({'code': code}))
         except Exception as e:
             self.set_status(500)
-            self.finish(json.dumps({'error': str(e)}))load_dotenv
+            self.finish(json.dumps({'error': str(e)}))
