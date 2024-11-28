@@ -21,9 +21,17 @@ export async function requestAPI<T>(
     ...init.headers
   };
 
+  // Add _xsrf to the body for POST requests
+  let body = init.body;
+  if (init.method === 'POST' && typeof body === 'string') {
+    const bodyData = JSON.parse(body);
+    body = JSON.stringify({ ...bodyData, _xsrf: xsrfToken });
+  }
+
   const response = await fetch(`/turboline-ai/${endpoint}`, {
     ...init,
-    headers
+    headers,
+    body
   });
 
   if (!response.ok) {
