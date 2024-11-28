@@ -1,0 +1,15 @@
+# Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
+_commit: v4.3.6
+_src_path: https://github.com/jupyterlab/extension-template.git
+author_email: dev@turboline.ai
+author_name: Turboline.AI
+has_binder: false
+has_settings: false
+kind: frontend
+labextension_name: turboline-ai
+project_short_description: AI-powered code generator for Python Data Science and Data
+    Engineering.
+python_name: turboline_ai
+repository: https://github.com/turboline-ai/turboline-jupyter-lab
+test: true
+
